@@ -1,0 +1,7 @@
+server:
+  port: 8000
+  servlet:
+    context-path: /
+    encoding:
+      charset: utf-8
+      enabled: true

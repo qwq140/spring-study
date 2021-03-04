@@ -13,4 +13,6 @@ spring:  datasource:    url: jdbc:h2:mem:testdb
     hibernate:      ddl-auto: update
       naming:        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true
-    open-in-view: true #몰라도 됨
+    open-in-view: true #몰라도 됨, true를 해야 LAZY전략을 사용가능
+    
+  jackson:    serialization:      fail-on-empty-beans: false
