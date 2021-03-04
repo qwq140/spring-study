@@ -1,5 +1,6 @@
 package com.cos.myjpa.web;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cos.myjpa.domain.post.Post;
 import com.cos.myjpa.domain.post.PostRepository;
+import com.cos.myjpa.domain.user.User;
 import com.cos.myjpa.web.dto.CommonRespDto;
 import com.cos.myjpa.web.post.dto.PostSaveReqDto;
 import com.cos.myjpa.web.post.dto.PostUpdateReqDto;
@@ -26,7 +28,12 @@ public class TestController {
 	
 	@PostMapping("/test/post")
 	public CommonRespDto<?> save(@RequestBody PostSaveReqDto postSaveReqDto) { // title, content
+		
+		// 원래는 세션값을 넣어야 함.
+		User user = new User(1L, "ssar", "1234", "ssar@nate.com", LocalDateTime.now());
+		
 		Post postEntity = postRepository.save(postSaveReqDto.toEntity()); // 실패 => exception을 탄다.
+		postEntity.setUser(user);
 		return new CommonRespDto<>(1, "성공",postEntity);
 	}
 	
