@@ -36,9 +36,9 @@ public class Post {
 	@Lob // 대용량 데이터
 	private String content;
 	
-	@ManyToOne(fetch = FetchType.EAGER) // 연관관계 맺는 법. FK의 주인인 곳에서 적어야 됨.
+	// 순방향 매핑
+	@ManyToOne(fetch = FetchType.LAZY) // 연관관계 맺는 법. FK의 주인인 곳에서 적어야 됨. LAZY, EAGER UX에 따라 선택
 	@JoinColumn(name="userId")
-	@JsonIgnoreProperties({"posts"})
 	private User user;
 	
 	@CreationTimestamp // 자동으로 현재시간이 들어감.
